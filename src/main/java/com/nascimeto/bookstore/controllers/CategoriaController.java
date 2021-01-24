@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nascimeto.bookstore.domain.Categoria;
+import com.nascimeto.bookstore.dto.CategoriaDTO;
 import com.nascimeto.bookstore.service.CategoriaService;
 
 @RestController
@@ -27,9 +28,9 @@ public class CategoriaController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Categoria>> getAll() {
-		List<Categoria> categorias = categoriaService.getAll();
-		return ResponseEntity.ok(categorias);
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<CategoriaDTO> categorias = categoriaService.findAll();
+		return ResponseEntity.ok().body(categorias);
 	}
 	
 }
