@@ -30,5 +30,10 @@ public class CategoriaService {
 		List<Categoria> categoriaList = categoriaRepository.findAll();
 		return categoriaList.stream().map(CategoriaDTO::new).collect(Collectors.toList());
 	}
+	
+	public Categoria create(Categoria categoria) {
+		categoria.setId(null);
+		return categoriaRepository.save(categoria);
+	}
 
 }
