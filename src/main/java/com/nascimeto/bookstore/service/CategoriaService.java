@@ -35,5 +35,12 @@ public class CategoriaService {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);
 	}
+	
+	public Categoria update(Long id, CategoriaDTO dto) {
+		Categoria categoria = findById(id);
+		categoria.setNome(dto.getNome());
+		categoria.setDescricao(dto.getDescricao());
+		return categoriaRepository.save(categoria);
+	}
 
 }
