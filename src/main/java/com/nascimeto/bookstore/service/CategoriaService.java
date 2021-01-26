@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.nascimeto.bookstore.domain.Categoria;
@@ -45,6 +46,10 @@ public class CategoriaService {
 
     public void delete(Long categoriaId) {
 		findById(categoriaId);
-		categoriaRepository.deleteById(categoriaId);
+		try {
+			categoriaRepository.deleteById(categoriaId);
+		}catch (DataIntegrityViolationException e) {
+			throw new com.nascimeto.bookstore.service.exceptions.DataIntegrityViolationException("Categoria não pode ser deletada possui livros associados");
+		}
     }
 }
