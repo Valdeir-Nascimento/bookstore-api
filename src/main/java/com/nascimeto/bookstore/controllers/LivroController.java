@@ -7,7 +7,9 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +27,9 @@ public class LivroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LivroDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long idCategoria ) {
+    public ResponseEntity<List<LivroDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long idCategoria) {
         List<Livro> livros = livroService.findAll(idCategoria);
-        List<LivroDTO> dtoList  = livros.stream().map(LivroDTO::new).collect(Collectors.toList());
+        List<LivroDTO> dtoList = livros.stream().map(LivroDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(dtoList);
     }
 
@@ -41,6 +43,18 @@ public class LivroController {
     public ResponseEntity<Livro> updatePatch(@PathVariable Long idLivro, @RequestBody Livro livro) {
         Livro livroAtualizado = livroService.update(idLivro, livro);
         return ResponseEntity.ok().body(livroAtualizado);
+    }
+
+    @PostMapping
+    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long idCategoria,
+                                        @RequestBody Livro livro) {
+        Livro novoLivro = livroService.create(idCategoria, livro);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/livros/{id}")
+                .buildAndExpand(livro.getId())
+                .toUri();
+        return ResponseEntity.created(uri).build();
     }
 
 }
