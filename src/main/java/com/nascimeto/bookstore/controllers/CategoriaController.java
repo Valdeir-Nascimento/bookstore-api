@@ -15,46 +15,46 @@ import com.nascimeto.bookstore.service.CategoriaService;
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaController {
-	
-	@Autowired
-	private CategoriaService categoriaService;
-	
-	
-	@GetMapping("/{categoriaId}")
-	public ResponseEntity<Categoria> findById(@PathVariable Long categoriaId) {
-		Categoria categoria = categoriaService.findById(categoriaId);
-		return ResponseEntity.ok().body(categoria); 
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<CategoriaDTO>> findAll() {
-		List<CategoriaDTO> categorias = categoriaService.findAll();
-		return ResponseEntity.ok().body(categorias);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
-		categoria = categoriaService.create(categoria);
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(categoria.getId())
-				.toUri();
-		
-		return ResponseEntity.created(uri).body(categoria);
-	}
-	
-	@PutMapping(value = "/{categoriaId}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Long categoriaId, @RequestBody CategoriaDTO dto) {
-		Categoria categoriaAtualizada = categoriaService.update(categoriaId, dto);
-		
-		return ResponseEntity.ok().body(new CategoriaDTO(categoriaAtualizada));
-	}
 
-	@DeleteMapping(value = "/{categoriaId}")
-	public ResponseEntity<Void> delete(@PathVariable Long categoriaId) {
-		categoriaService.delete(categoriaId);
-		return ResponseEntity.noContent().build();
-	}
-	
+    @Autowired
+    private CategoriaService categoriaService;
+
+
+    @GetMapping("/{categoriaId}")
+    public ResponseEntity<Categoria> findById(@PathVariable Long categoriaId) {
+        Categoria categoria = categoriaService.findById(categoriaId);
+        return ResponseEntity.ok().body(categoria);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaDTO>> findAll() {
+        List<CategoriaDTO> categorias = categoriaService.findAll();
+        return ResponseEntity.ok().body(categorias);
+    }
+
+    @PostMapping
+    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+        categoria = categoriaService.create(categoria);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(categoria.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(categoria);
+    }
+
+    @PutMapping(value = "/{categoriaId}")
+    public ResponseEntity<CategoriaDTO> update(@PathVariable Long categoriaId, @RequestBody CategoriaDTO dto) {
+        Categoria categoriaAtualizada = categoriaService.update(categoriaId, dto);
+
+        return ResponseEntity.ok().body(new CategoriaDTO(categoriaAtualizada));
+    }
+
+    @DeleteMapping(value = "/{categoriaId}")
+    public ResponseEntity<Void> delete(@PathVariable Long categoriaId) {
+        categoriaService.delete(categoriaId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

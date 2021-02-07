@@ -12,103 +12,103 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Livro implements Serializable{
-	
-	
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String titulo;
-	private String autor;
-	private String texto;
-	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "categoria_id")
-	private Categoria categoria;
+public class Livro implements Serializable {
 
-	public Livro() {
-		super();
-	}
 
-	public Livro(Long id, String titulo, String autor, String texto, Categoria categoria) {
-		super();
-		this.id = id;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.texto = texto;
-		this.categoria = categoria;
-	}
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String titulo;
+    private String autor;
+    private String texto;
 
-	public Long getId() {
-		return id;
-	}
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Livro() {
+        super();
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public Livro(Long id, String titulo, String autor, String texto, Categoria categoria) {
+        super();
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.texto = texto;
+        this.categoria = categoria;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getAutor() {
-		return autor;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public String getTexto() {
-		return texto;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+    public String getAutor() {
+        return autor;
+    }
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+    public String getTexto() {
+        return texto;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Livro other = (Livro) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-	@Override
-	public String toString() {
-		return "Livro [id=" + id + "]";
-	}
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Livro other = (Livro) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Livro [id=" + id + "]";
+    }
 
 }
