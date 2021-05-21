@@ -2,7 +2,7 @@ package com.nascimeto.bookstore.service;
 
 import com.nascimeto.bookstore.domain.Categoria;
 import com.nascimeto.bookstore.domain.Livro;
-import com.nascimeto.bookstore.repositories.LivroRepository;
+import com.nascimeto.bookstore.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.nascimeto.bookstore.service.exceptions.ObjectNotFoundException;

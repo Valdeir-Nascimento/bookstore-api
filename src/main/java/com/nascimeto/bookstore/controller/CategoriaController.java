@@ -1,4 +1,4 @@
-package com.nascimeto.bookstore.controllers;
+package com.nascimeto.bookstore.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -11,6 +11,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.nascimeto.bookstore.domain.Categoria;
 import com.nascimeto.bookstore.dto.CategoriaDTO;
 import com.nascimeto.bookstore.service.CategoriaService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -33,7 +35,7 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> create(@RequestBody @Valid Categoria categoria) {
         categoria = categoriaService.create(categoria);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -45,9 +47,9 @@ public class CategoriaController {
     }
 
     @PutMapping(value = "/{categoriaId}")
-    public ResponseEntity<CategoriaDTO> update(@PathVariable Long categoriaId, @RequestBody CategoriaDTO dto) {
-        Categoria categoriaAtualizada = categoriaService.update(categoriaId, dto);
-
+    public ResponseEntity<CategoriaDTO> update(
+            @PathVariable Long categoriaId, @RequestBody @Valid CategoriaDTO categoria) {
+        Categoria categoriaAtualizada = categoriaService.update(categoriaId, categoria);
         return ResponseEntity.ok().body(new CategoriaDTO(categoriaAtualizada));
     }
 

@@ -3,13 +3,20 @@ package com.nascimeto.bookstore.dto;
 import java.io.Serializable;
 
 import com.nascimeto.bookstore.domain.Categoria;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
 
 public class CategoriaDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @Length(min = 3, max = 100, message = "O campo nome deve ter entre 2 e 100 caracteres")
+    @NotBlank(message = "Campo NOME é requerido")
     private String nome;
+    @Length(min = 3, max = 100, message = "O campo nome deve ter entre 2 e 100 caracteres")
+    @NotBlank(message = "Campo DESCRIÇÃO é requerido")
     private String descricao;
 
     public CategoriaDTO() {

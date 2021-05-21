@@ -1,4 +1,4 @@
-package com.nascimeto.bookstore.repositories;
+package com.nascimeto.bookstore.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

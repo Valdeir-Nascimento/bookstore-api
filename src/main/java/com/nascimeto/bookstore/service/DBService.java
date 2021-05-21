@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.nascimeto.bookstore.domain.Categoria;
 import com.nascimeto.bookstore.domain.Livro;
-import com.nascimeto.bookstore.repositories.CategoriaRepository;
-import com.nascimeto.bookstore.repositories.LivroRepository;
+import com.nascimeto.bookstore.repository.CategoriaRepository;
+import com.nascimeto.bookstore.repository.LivroRepository;
 
 @Service
 public class DBService {

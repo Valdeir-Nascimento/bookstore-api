@@ -5,12 +5,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.nascimeto.bookstore.domain.Categoria;
 import com.nascimeto.bookstore.dto.CategoriaDTO;
-import com.nascimeto.bookstore.repositories.CategoriaRepository;
+import com.nascimeto.bookstore.repository.CategoriaRepository;
 import com.nascimeto.bookstore.service.exceptions.ObjectNotFoundException;
 
 @Service

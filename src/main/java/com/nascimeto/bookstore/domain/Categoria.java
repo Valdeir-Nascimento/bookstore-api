@@ -1,5 +1,7 @@
 package com.nascimeto.bookstore.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +11,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Categoria implements Serializable {
-
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Length(min = 3, max = 100, message = "O campo nome deve ter entre 2 e 100 caracteres")
+    @NotBlank(message = "Campo NOME é requerido")
     private String nome;
+    @Length(min = 3, max = 200, message = "O campo nome deve ter entre 2 e 200 caracteres")
+    @NotBlank(message = "Campo DESCRIÇÃO é requerido")
     private String descricao;
-
     @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();
 
